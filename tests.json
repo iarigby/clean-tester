@@ -1,0 +1,29 @@
+{
+  "classwork1": [
+    {
+      "name": "factor",
+      "description": "calculate n factorial",
+      "tests": {
+        "shown": [
+          {"input": 5, "output": 120},
+          {"input": 0, "output": 1}
+        ],
+        "hidden": [
+          {"input": 4, "output": 24}
+        ]
+      }
+    },
+    {
+      "name": "abs2",
+      "description": "calculate absolute value of n",
+      "tests": {
+        "shown": [
+          {"input": 5, "output": 5},
+          {"input": 0, "output": 0},
+          {"input": -4, "output": 4}
+        ],
+        "hidden": []
+      }
+    }
+  ]
+}
