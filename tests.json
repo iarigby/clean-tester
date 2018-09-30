@@ -25,5 +25,19 @@
         "hidden": []
       }
     }
+  ],
+  "ex3": [
+    {
+      "name": "revsub",
+      "description": "something",
+      "tests": {
+        "shown": [
+          {"input": "[[1,2,3],[5,6]]", "output": "[[3,2,1],[6,5]]"}
+        ],
+        "hidden": [
+
+        ]
+      }
+    }
   ]
 }
