@@ -3,6 +3,7 @@ class Logger:
     # TODO refactor
     @staticmethod
     def log(success, student, message=""):
+        print(message)
         msg = "failed"
         if success:
             msg = "success"
