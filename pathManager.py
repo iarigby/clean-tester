@@ -35,5 +35,3 @@ class PathManager:
 
     def get_first_unzip_path(self):
         return self.path_from_root("tmp")
-
-

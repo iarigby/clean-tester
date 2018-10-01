@@ -4,4 +4,3 @@ class Config:
         self.test_dir = test_dir
         self.source_dir = source_dir
         self.zip_dir = zip_dir
-
