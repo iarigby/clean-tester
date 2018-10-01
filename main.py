@@ -1,6 +1,6 @@
-from Config import Config
-from SubmissionChecker import SubmissionChecker
-from SubmissionData import SubmissionData
+from config import Config
+from submissionChecker import SubmissionChecker
+from dataReprs import SubmissionData
 from helpers import *
 
 

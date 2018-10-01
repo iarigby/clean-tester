@@ -1,10 +1,9 @@
-from Tester import Tester
+from tester import Tester
 
-from FileManager import FileManager
-from FunctionData import FunctionData
-from Config import Config
-from PathManager import PathManager
-from SubmissionData import SubmissionData
+from fileManager import FileManager
+from dataReprs import FunctionData, SubmissionData
+from config import Config
+from pathManager import PathManager
 from subprocess import CalledProcessError
 from typing import List
 from bcolors import *

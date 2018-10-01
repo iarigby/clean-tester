@@ -1,5 +1,5 @@
-from Config import Config
-from SubmissionData import SubmissionData
+from config import Config
+from dataReprs import SubmissionData
 
 
 class PathManager:

@@ -2,7 +2,7 @@ import os
 import shutil
 import zipfile
 
-from PathManager import PathManager
+from pathManager import PathManager
 
 
 class FileManager:

@@ -1,4 +1,4 @@
-from Logger import Logger
+from logger import Logger
 from helpers import make_call
 from bcolors import *
 import os
