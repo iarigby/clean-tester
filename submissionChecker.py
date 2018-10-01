@@ -1,12 +1,12 @@
-from tester import Tester
-
-from fileManager import FileManager
-from dataReprs import FunctionData, SubmissionData
-from config import Config
-from pathManager import PathManager
 from subprocess import CalledProcessError
 from typing import List
+
 from bcolors import *
+from config import Config
+from dataReprs import FunctionData, SubmissionData
+from fileManager import FileManager
+from pathManager import PathManager
+from tester import Tester
 
 
 class SubmissionChecker:
@@ -22,43 +22,26 @@ class SubmissionChecker:
     def start_session(self):
         self.file_manager.unzip_all_files()
         for student in self.file_manager.students_list:
+            self.file_manager.create_test_dir(student)
             self.evaluate_submission(student)
 
     def evaluate_submission(self, student):
         print("\n\n*** checking submission from " + student)
+        tester = Tester(self.path_manager.get_test_path(student),
+                        self.filename, self.exe_name, student,
+                        self.file_manager.get_file_content(student, self.filename))
         for func in self.functions_data:
-            self.run_tests(student, func)
+            self.run_tests(tester, func)
 
-    def run_tests(self, student, func):
+    @staticmethod
+    def run_tests(tester, func):
         print(f"*** {OKBLUE}testing function {func.name} {ENDC}***")
+        tester.change_function(func.name)
         for test in func.tests:
             # TODO test.f_input instead of test.input
-            self.create_test_file(student, func.name, test.input)
+            # TODO messages are logged twice
             try:
                 # TODO finish refactoring this part
-                tester = Tester(self.path_manager.get_test_path(student),
-                                self.filename, self.exe_name,
-                                test.input, test.output, student)
-                tester.run()
-
+                tester.run(test.input, test.output)
             except CalledProcessError:
                 print("check this out")
-
-    def create_test_file(self, student, clean_func, args):
-        out_path = self.path_manager.get_test_path(student)
-        in_path = self.path_manager.get_student_unzip_path(student)
-        self.file_manager.clean_directory(out_path)
-        with open(f'{out_path}/{self.filename}.icl', 'w+') as testfile:
-            contents = self.get_file_content(in_path)
-            testfile.write(contents)
-            testfile.write(f"\nStart = {clean_func} {args}")
-
-    def get_file_content(self, path):
-        try:
-            with open(f"{path}/{self.filename}.icl", "r") as read_file:
-                contents = read_file.read()
-                contents = contents.replace("\n Start", "//Start")
-                contents = contents.replace("\nStart", "//Start")
-                return contents
-        except FileNotFoundError:
-            return ""

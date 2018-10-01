@@ -1,7 +1,7 @@
 import os
 import shutil
 import zipfile
-
+from logger import Logger
 from pathManager import PathManager
 
 
@@ -45,3 +45,17 @@ class FileManager:
             if file_name.endswith("zip"):
                 submissions.append(file_name[0:-4])
         return sorted(submissions, key=lambda x: x[0])
+
+    def create_test_dir(self, student):
+        self.clean_directory(self.path_mgr.get_test_path(student))
+
+    def get_file_content(self, student, filename):
+        try:
+            with open(f"{self.path_mgr.get_student_unzip_path(student)}/{filename}.icl", "r") as read_file:
+                contents = read_file.read()
+                contents = contents.replace("\n Start", "//Start")
+                contents = contents.replace("\nStart", "//Start")
+                return contents
+        except FileNotFoundError:
+            Logger.log(False, student, "could not find file " + filename)
+            return ""
