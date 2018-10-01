@@ -27,12 +27,8 @@
       "name": "revsub",
       "description": "something",
       "tests": [
-        {
-          "input": "[[1,2,3],[5,6]]",
-          "output": "[[3,2,1],[6,5]]",
-          "hidden": "False"
-        }
-      ]
-    }
+          {"input": "[[1,2,3],[5,6]]", "output": "[[3,2,1],[6,5]]", "hidden": "False"}
+        ]
+      }
   ]
 }

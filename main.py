@@ -2,6 +2,10 @@ import os
 import shutil
 from subprocess import CalledProcessError
 
+from Config import Config
+from FunctionData import FunctionData
+from SubmissionChecker import SubmissionChecker
+from SubmissionData import SubmissionData
 from bcolors import *
 from helpers import *
 
@@ -113,4 +117,11 @@ def export_submission(submission_name, student_name):
     unzip_file(f"{submission_name}/{student_name}.zip")
 
 
-main()
+def test():
+    conf = Config("test", "a.out")
+    functions = get_test_data("tests2.json").ex3
+    submission_data = SubmissionData("cw1", "ex3", functions)
+    session = SubmissionChecker(submission_data, conf)
+    session.start_session()
+
+test()
