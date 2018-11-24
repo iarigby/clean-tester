@@ -5,11 +5,11 @@ from helpers import *
 
 
 def main():
+    open('results.txt', 'w').close()
     conf = Config("a.out", "test", "source", ".")
-    functions = get_test_data("resources/tests2.json").ex3
-    submission_data = SubmissionData("cw1", "ex3", functions)
+    functions = get_test_data("resources/tests2.json").hw2
+    submission_data = SubmissionData("hw2", "hw2", functions)
     session = SubmissionChecker(submission_data, conf)
     session.start_session()
-
 
 main()
